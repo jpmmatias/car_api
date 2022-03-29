@@ -3,9 +3,10 @@ import { requestBodyRequired } from '../middlewares/requestBodyRequired';
 import { requestFieldsRequired } from '../middlewares/requestFieldsRequired';
 import SpecificationRepository from '../modules/car/repositories/implementantions/SpecificationRepository';
 import CreateSpecificationService from '../modules/car/services/CreateSpecificationService';
+import { createSpecificationController } from '../modules/car/useCases';
 
 const specificationRoutes = Router();
-const specificationsRepository = new SpecificationRepository();
+const specificationsRepository = SpecificationRepository.getInstance();
 
 specificationRoutes.get('/', (req, res) => {
 	const specifications = specificationsRepository.list();
@@ -18,17 +19,7 @@ specificationRoutes.post(
 	requestBodyRequired,
 	requestFieldsRequired(['name']),
 	(req, res) => {
-		const { name, description } = req.body;
-
-		const createSpecifiactionService = new CreateSpecificationService(
-			name,
-			description,
-			specificationsRepository
-		);
-
-		createSpecifiactionService.execute();
-
-		return res.status(201).send();
+		return createSpecificationController.handle(req, res);
 	}
 );
 
