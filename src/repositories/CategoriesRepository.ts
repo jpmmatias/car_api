@@ -1,12 +1,10 @@
 import Category from '../models/Category';
+import {
+	ICategoryRepository,
+	ICreateCateogryDTO,
+} from './ICategoriesRepository';
 
-// DTO => Data transfer object
-interface ICreateCateogryDTO {
-	name: string;
-	description: string;
-}
-
-class CategoriesRepository {
+class CategoriesRepository implements ICategoryRepository {
 	private categories: Category[] = [];
 
 	constructor() {
@@ -19,19 +17,15 @@ class CategoriesRepository {
 		this.categories.push(category);
 	}
 
-	list(): Category[] {
+	ist(): Category[] {
 		return this.categories;
 	}
 
 	findByName(name: string): Category | null {
 		const category = this.categories.find((category) => category.name === name);
 
-		if (!category) {
-			return null;
-		}
-
-		return category;
+		return category ? category : null;
 	}
 }
 
-export default new CategoriesRepository();
+export default CategoriesRepository;
