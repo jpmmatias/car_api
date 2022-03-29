@@ -1,8 +1,8 @@
-import { NextFunction, Request, Response, Router } from 'express';
+import { Router } from 'express';
 import { requestBodyRequired } from '../middlewares/requestBodyRequired';
 import { requestFieldsRequired } from '../middlewares/requestFieldsRequired';
-import CategoriesRepository from '../repositories/CategoriesRepository';
-import CreateCategoryService from '../services/CreateCategoryService';
+import CategoriesRepository from '../modules/car/repositories/CategoriesRepository';
+import CreateCategoryService from '../modules/car/services/CreateCategoryService';
 
 const categoriesRoutes = Router();
 const categoriesRepository = new CategoriesRepository();

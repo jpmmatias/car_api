@@ -17,7 +17,7 @@ class CategoriesRepository implements ICategoryRepository {
 		this.categories.push(category);
 	}
 
-	ist(): Category[] {
+	list(): Category[] {
 		return this.categories;
 	}
 
