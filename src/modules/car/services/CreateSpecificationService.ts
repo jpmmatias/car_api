@@ -1,3 +1,5 @@
+import { ISpecificationRepository } from '../repositories/ISpecificationsRepository';
+
 class CreateCategoryService {
 	constructor(
 		private name: string,
