@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { requestBodyRequired } from '../middlewares/requestBodyRequired';
 import { requestFieldsRequired } from '../middlewares/requestFieldsRequired';
-import SpecificationRepository from '../modules/car/repositories/SpecificationRepository';
+import SpecificationRepository from '../modules/car/repositories/implementantions/SpecificationRepository';
 import CreateSpecificationService from '../modules/car/services/CreateSpecificationService';
 
 const specificationRoutes = Router();
