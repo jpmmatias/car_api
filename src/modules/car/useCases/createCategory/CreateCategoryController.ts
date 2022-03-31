@@ -7,7 +7,6 @@ export default class CreateCategoryController {
 		const { name, description } = req.body;
 
 		this.createCategoryUseCase.execute(name, description);
-
 		return res.status(201).send();
 	}
 }
