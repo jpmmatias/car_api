@@ -1,8 +1,10 @@
 import CategoriesRepository from '../../repositories/implementantions/CategoriesRepository';
 
 export class ListCategoryUseCase {
-	constructor(private categoriesRepository: CategoriesRepository) {}
+	constructor(private categoriesRepository: CategoriesRepository | null) {}
 	execute() {
-		return this.categoriesRepository.list();
+		if (this.categoriesRepository) {
+			return this.categoriesRepository.list();
+		}
 	}
 }

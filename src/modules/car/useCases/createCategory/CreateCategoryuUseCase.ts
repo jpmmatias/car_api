@@ -2,16 +2,18 @@ import { ICategoryRepository } from '../../repositories/ICategoriesRepository';
 class CreateCategoryUseCase {
 	constructor(private categoryRepository: ICategoryRepository) {}
 
-	execute(name: string, description: string) {
-		if (this.categoryAlreadyExist(name)) {
+	async execute(name: string, description: string): Promise<void> {
+		if (await this.categoryAlreadyExist(name)) {
 			throw new Error('Category already exists!');
 		}
 
-		this.categoryRepository.create({ name, description });
+		await this.categoryRepository.create({ name, description });
 	}
 
-	private categoryAlreadyExist(name: string) {
-		return this.categoryRepository.findByName(name) === null ? false : true;
+	private async categoryAlreadyExist(name: string): Promise<Boolean> {
+		return (await this.categoryRepository.findByName(name)) === null
+			? false
+			: true;
 	}
 }
 

@@ -1,4 +1,5 @@
-import Category from '../models/Category';
+import Category from '../entities/Category';
+import { Repository } from 'typeorm';
 
 // DTO => Data transfer object
 interface ICreateCateogryDTO {
@@ -7,9 +8,9 @@ interface ICreateCateogryDTO {
 }
 
 interface ICategoryRepository {
-	findByName(name: string): Category | null;
-	list(): Category[];
-	create({}: ICreateCateogryDTO): void;
+	findByName(name: string): Promise<Category | undefined>;
+	list(): Promise<Category[]>;
+	create({}: ICreateCateogryDTO): Promise<void>;
 }
 
 export { ICategoryRepository, ICreateCateogryDTO };

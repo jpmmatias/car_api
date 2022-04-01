@@ -6,11 +6,12 @@ services:
     container_name: database_rental_x
     restart: always
     ports:
-      - '5433:5432'
+      - '5433:5433'
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=1234
       - POSTGRES_DB=rentx
+      - PGPORT=5433
     volumes:
       - pgdata:/data/postgres
 

@@ -19,7 +19,7 @@ specificationRoutes.post(
 	requestBodyRequired,
 	requestFieldsRequired(['name']),
 	(req, res) => {
-		return createSpecificationController.handle(req, res);
+		return createSpecificationController().handle(req, res);
 	}
 );
 

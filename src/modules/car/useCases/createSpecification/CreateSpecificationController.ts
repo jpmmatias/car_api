@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { createSpecificationUseCase } from './CreateSpecificationUseCase';
+import { CreateSpecificationUseCase } from './CreateSpecificationUseCase';
 
 export class CreateSpecificationController {
-	constructor(private createSpecificatioUseCase: createSpecificationUseCase) {}
+	constructor(private createSpecificatioUseCase: CreateSpecificationUseCase) {}
 
 	handle(req: Request, res: Response) {
 		const { name, description } = req.body;

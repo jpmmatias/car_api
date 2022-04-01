@@ -5,8 +5,8 @@ import { requestFieldsRequired } from '../middlewares/requestFieldsRequired';
 import {
 	createCategoryController,
 	listCategoryController,
+	importCategoryController,
 } from '../modules/car/useCases';
-import { importCategoryController } from '../modules/car/useCases/importCategory';
 
 const categoriesRoutes = Router();
 
@@ -15,7 +15,7 @@ const upload = multer({
 });
 
 categoriesRoutes.get('/', (req, res) => {
-	return listCategoryController.handle(req, res);
+	return listCategoryController().handle(req, res);
 });
 
 categoriesRoutes.post(
@@ -23,12 +23,12 @@ categoriesRoutes.post(
 	requestBodyRequired,
 	requestFieldsRequired(['name']),
 	(req, res) => {
-		return createCategoryController.handle(req, res);
+		return createCategoryController().handle(req, res);
 	}
 );
 
 categoriesRoutes.post('/import', upload.single('file'), (req, res) => {
-	return importCategoryController.handle(req, res);
+	return importCategoryController().handle(req, res);
 });
 
 export { categoriesRoutes };

@@ -1,12 +1,15 @@
-import { DataSource } from 'typeorm';
+import { Connection, createConnection, getConnectionOptions } from 'typeorm';
 
-const dataSource = new DataSource({
-	type: 'postgres',
-	host: 'database',
-	port: 5432,
-	username: 'docker',
-	password: '1234',
-	database: 'rentx',
-});
+interface IOptions {
+	host: string;
+}
 
-dataSource.initialize();
+export default async (host = 'database'): Promise<Connection> => {
+	const defaultOptions = await getConnectionOptions();
+
+	return createConnection(
+		Object.assign(defaultOptions, {
+			host,
+		})
+	);
+};
