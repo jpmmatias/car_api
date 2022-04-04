@@ -1,11 +1,13 @@
 import 'reflect-metadata';
-import './database';
+import createConnection from './database';
 import express from 'express';
 import swagger from 'swagger-ui-express';
 import swaggerFile from './swagger.json';
 import { router } from './routes';
 
 const app = express();
+
+createConnection().then(() => console.log('connected to postgress database'));
 
 app.use(express.json());
 

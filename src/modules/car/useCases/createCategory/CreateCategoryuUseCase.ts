@@ -11,9 +11,11 @@ class CreateCategoryUseCase {
 	}
 
 	private async categoryAlreadyExist(name: string): Promise<Boolean> {
-		return (await this.categoryRepository.findByName(name)) === null
-			? false
-			: true;
+		const category = await this.categoryRepository.findByName(name);
+
+		if (category) return true;
+
+		return false;
 	}
 }
 

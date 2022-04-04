@@ -2,9 +2,9 @@ import CategoriesRepository from '../../repositories/implementantions/Categories
 
 export class ListCategoryUseCase {
 	constructor(private categoriesRepository: CategoriesRepository | null) {}
-	execute() {
+	async execute() {
 		if (this.categoriesRepository) {
-			return this.categoriesRepository.list();
+			return await this.categoriesRepository.list();
 		}
 	}
 }
