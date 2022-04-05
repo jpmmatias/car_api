@@ -1,6 +1,12 @@
+import { inject, injectable } from 'tsyringe';
 import { ICategoryRepository } from '../../repositories/ICategoriesRepository';
+
+@injectable()
 class CreateCategoryUseCase {
-	constructor(private categoryRepository: ICategoryRepository) {}
+	constructor(
+		@inject('CategoryRepository')
+		private categoryRepository: ICategoryRepository
+	) {}
 
 	async execute(name: string, description: string): Promise<void> {
 		if (await this.categoryAlreadyExist(name)) {

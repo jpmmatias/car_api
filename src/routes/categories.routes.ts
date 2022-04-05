@@ -2,11 +2,13 @@ import { Router } from 'express';
 import multer from 'multer';
 import { requestBodyRequired } from '../middlewares/requestBodyRequired';
 import { requestFieldsRequired } from '../middlewares/requestFieldsRequired';
+import CreateCategoryController from '../modules/car/useCases/createCategory/CreateCategoryController';
 import {
-	createCategoryController,
 	listCategoryController,
 	importCategoryController,
 } from '../modules/car/useCases';
+
+const createCategoryController = new CreateCategoryController();
 
 const categoriesRoutes = Router();
 
@@ -22,9 +24,7 @@ categoriesRoutes.post(
 	'/',
 	requestBodyRequired,
 	requestFieldsRequired(['name']),
-	(req, res) => {
-		return createCategoryController().handle(req, res);
-	}
+	createCategoryController.handle
 );
 
 categoriesRoutes.post('/import', upload.single('file'), (req, res) => {
