@@ -1,18 +1,25 @@
 import SpecificationRepository from '../../repositories/implementantions/SpecificationRepository';
+import { injectable, inject } from 'tsyringe';
+@injectable()
 export class CreateSpecificationUseCase {
-	constructor(private specificationRepository: SpecificationRepository) {}
+	constructor(
+		@inject('SpecificationRepository')
+		private specificationRepository: SpecificationRepository
+	) {}
 
-	execute(name: string, description: string) {
-		if (this.specificationAlreadyExist(name)) {
+	async execute(name: string, description: string) {
+		if (await this.specificationAlreadyExist(name)) {
 			throw new Error('Specification already exists!');
 		}
 
-		this.specificationRepository.create({ name, description });
+		await this.specificationRepository.create({ name, description });
 	}
 
-	private specificationAlreadyExist(name: string) {
-		return this.specificationRepository.findByName(name) === null
-			? false
-			: true;
+	private async specificationAlreadyExist(name: string): Promise<Boolean> {
+		const category = await this.specificationRepository.findByName(name);
+
+		if (category) return true;
+
+		return false;
 	}
 }
