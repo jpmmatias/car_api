@@ -77,6 +77,78 @@
 					}
 				}
 			}
+		},
+		"/categories/import": {
+			"post": {
+				"tags": ["Category"],
+				"summary": "Upload new Category",
+				"description": "Upload a new category",
+				"requestBody": {
+					"content": {
+						"multipart/form-data": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"file": {
+										"type": "string",
+										"format": "binary"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Created"
+					},
+					"500": {
+						"description": "Category already exists"
+					},
+					"400": {
+						"description": "Bad Request: 'name' field is required"
+					}
+				}
+			}
+		},
+		"/specifications": {
+			"post": {
+				"tags": ["Specifications"],
+				"summary": "Create a specification",
+				"description": "Create a new specification",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"propreties": {
+									"name": {
+										"type": "string"
+									},
+									"description": {
+										"type": "string"
+									}
+								},
+								"example": {
+									"name": "The best specification",
+									"description": "The best description"
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Created"
+					},
+					"500": {
+						"description": "Specification already exists"
+					}
+				}
+			}
 		}
+	},
+	"definitions": {
+		"Specifications": {}
 	}
 }
