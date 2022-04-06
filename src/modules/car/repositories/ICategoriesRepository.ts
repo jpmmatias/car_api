@@ -1,5 +1,4 @@
 import Category from '../entities/Category';
-import { Repository } from 'typeorm';
 
 // DTO => Data transfer object
 interface ICreateCateogryDTO {
