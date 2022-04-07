@@ -10,9 +10,6 @@ class User {
 	name: string;
 
 	@Column()
-	username: string;
-
-	@Column()
 	email: string;
 
 	@Column()
@@ -29,7 +26,6 @@ class User {
 
 	constructor(
 		name: string,
-		username: string,
 		email: string,
 		password: string,
 		driver_liscence: string
@@ -40,7 +36,6 @@ class User {
 
 		this.name = name;
 		this.password = password;
-		this.username = username;
 		this.email = email;
 		this.admin = false;
 		this.driver_liscence = driver_liscence;

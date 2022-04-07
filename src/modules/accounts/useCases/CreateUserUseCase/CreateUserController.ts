@@ -8,7 +8,7 @@ export default class CreateCategoryController {
 
 		const createUserUseCse = container.resolve(CreateUserUseCase);
 
-		await createUserUseCse.execute(name, password, email, driver_liscence);
+		await createUserUseCse.execute(name, email, password, driver_liscence);
 		return res.status(201).send();
 	}
 }

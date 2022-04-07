@@ -32,6 +32,14 @@ class UserRepository implements IUserRepository {
 		});
 		await this.repository.save(user);
 	}
+
+	async findByEmail(email: string) {
+		return await this.repository.findOne({ email });
+	}
+
+	async findById(id: string) {
+		return await this.repository.findOne({ id });
+	}
 }
 
 export default UserRepository;

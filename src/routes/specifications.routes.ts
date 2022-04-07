@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { ensureAuhtenticated } from '../middlewares/ensureAuthenticated';
 import { requestBodyRequired } from '../middlewares/requestBodyRequired';
 import { requestFieldsRequired } from '../middlewares/requestFieldsRequired';
 import {
@@ -10,10 +11,15 @@ const specificationRoutes = Router();
 const createSpecificationController = new CreateSpecificationController();
 const listSpecificationController = new ListSpecificationsController();
 
-specificationRoutes.get('/', listSpecificationController.handle);
+specificationRoutes.get(
+	'/',
+	ensureAuhtenticated,
+	listSpecificationController.handle
+);
 
 specificationRoutes.post(
 	'/',
+	ensureAuhtenticated,
 	requestBodyRequired,
 	requestFieldsRequired(['name']),
 	createSpecificationController.handle

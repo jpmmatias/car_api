@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import multer from 'multer';
+import { ensureAuhtenticated } from '../middlewares/ensureAuthenticated';
 import { requestBodyRequired } from '../middlewares/requestBodyRequired';
 import { requestFieldsRequired } from '../middlewares/requestFieldsRequired';
 import {
@@ -18,10 +19,11 @@ const upload = multer({
 	dest: './tmp',
 });
 
-categoriesRoutes.get('/', listCategoryController.handle);
+categoriesRoutes.get('/', ensureAuhtenticated, listCategoryController.handle);
 
 categoriesRoutes.post(
 	'/',
+	ensureAuhtenticated,
 	requestBodyRequired,
 	requestFieldsRequired(['name']),
 	createCategoryController.handle
@@ -29,6 +31,7 @@ categoriesRoutes.post(
 
 categoriesRoutes.post(
 	'/import',
+	ensureAuhtenticated,
 	upload.single('file'),
 	importCategoryController.handle
 );
