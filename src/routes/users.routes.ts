@@ -10,13 +10,7 @@ const createUserController = new CreateUserController();
 usersRoutes.post(
 	'/',
 	requestBodyRequired,
-	requestFieldsRequired([
-		'name',
-		'username',
-		'password',
-		'email',
-		'driver_liscence',
-	]),
+	requestFieldsRequired(['name', 'password', 'email', 'driver_liscence']),
 	createUserController.handle
 );
 

@@ -12,14 +12,12 @@ class CreateUserUseCase {
 		name: string,
 		email: string,
 		password: string,
-		username: string,
 		driver_liscence: string
 	): Promise<void> {
 		await this.userRepository.create({
 			name,
 			email,
 			password,
-			username,
 			driver_liscence,
 		});
 	}
