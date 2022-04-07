@@ -1,6 +1,7 @@
 import User from '../../entities/User';
 import { getRepository, Repository } from 'typeorm';
 import { ICreateUserDTO, IUserRepository } from '../IUserRepository';
+import IUpateUserDTO from '../../dtos/IUpdateUserDTO';
 
 class UserRepository implements IUserRepository {
 	repository: Repository<User>;
@@ -31,6 +32,10 @@ class UserRepository implements IUserRepository {
 			driver_liscence,
 		});
 		await this.repository.save(user);
+	}
+
+	async update(id: string, { ...options }: IUpateUserDTO) {
+		await this.repository.update(id, { ...options });
 	}
 
 	async findByEmail(email: string) {

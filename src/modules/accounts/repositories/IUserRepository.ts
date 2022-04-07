@@ -3,6 +3,7 @@ import User from '../entities/User';
 
 interface IUserRepository {
 	create({}: ICreateUserDTO): Promise<void>;
+	updateAvatar(id: string, avatar: string): Promise<void>;
 	findByEmail(email: string): Promise<User | undefined>;
 	findById(id: string): Promise<User | undefined>;
 }

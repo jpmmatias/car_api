@@ -2,12 +2,17 @@ import { Router } from 'express';
 import { requestBodyRequired } from '../middlewares/requestBodyRequired';
 import { requestFieldsRequired } from '../middlewares/requestFieldsRequired';
 import CreateUserController from '../modules/accounts/useCases/CreateUserUseCase/CreateUserController';
-import AuthenticationController from '../modules/accounts/useCases/AuthenticateUser/AuthenticateUserController';
+import UpdateUserAvatarController from '../modules/accounts/useCases/updateUserAvatar/updateUserAvatarController';
+import multer from 'multer';
+import uploadConfig from '../config/upload';
+import { ensureAuhtenticated } from '../middlewares/ensureAuthenticated';
 
 const usersRoutes = Router();
 
 const createUserController = new CreateUserController();
-const authenticationController = new AuthenticationController();
+const updateAvatarController = new UpdateUserAvatarController();
+
+const uploadAvatar = multer(uploadConfig.upload('./tmp/avatar'));
 
 usersRoutes.post(
 	'/',
@@ -16,11 +21,11 @@ usersRoutes.post(
 	createUserController.handle
 );
 
-usersRoutes.post(
-	'/auth',
-	requestBodyRequired,
-	requestFieldsRequired(['email', 'password']),
-	authenticationController.handle
+usersRoutes.patch(
+	'/avatar',
+	ensureAuhtenticated,
+	uploadAvatar.single('avatar'),
+	updateAvatarController.handle
 );
 
 export { usersRoutes };
