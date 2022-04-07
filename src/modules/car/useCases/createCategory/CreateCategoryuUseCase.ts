@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import { ICategoryRepository } from '../../repositories/ICategoriesRepository';
+import { AppError } from '../../../../errors/AppError';
 
 @injectable()
 class CreateCategoryUseCase {
@@ -10,7 +11,7 @@ class CreateCategoryUseCase {
 
 	async execute(name: string, description: string): Promise<void> {
 		if (await this.categoryAlreadyExist(name)) {
-			throw new Error('Category already exists!');
+			throw new AppError('Category already exists!');
 		}
 
 		await this.categoryRepository.create({ name, description });

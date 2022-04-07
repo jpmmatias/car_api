@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import { hash } from 'bcrypt';
 import { IUserRepository } from '../../repositories/IUserRepository';
+import { AppError } from '../../../../errors/AppError';
 
 @injectable()
 class CreateUserUseCase {
@@ -16,7 +17,7 @@ class CreateUserUseCase {
 		driver_liscence: string
 	): Promise<void> {
 		if (await this.userAlreadyExist(email)) {
-			throw Error('User already exist!');
+			throw new AppError('User already exist!');
 		}
 		const passwordHash = await hash(password, 8);
 
