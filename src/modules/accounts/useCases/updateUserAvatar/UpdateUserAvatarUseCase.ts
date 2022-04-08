@@ -1,4 +1,4 @@
-import UserRepository from '@modules/accounts/repositories/implementantions/UserRepository';
+import UserRepository from '@modules/accounts/infra/typeorm/repositories/UserRepository';
 import { inject, injectable } from 'tsyringe';
 import { AppError } from '@shared/errors/AppError';
 import { deleteFile } from '../../../../utils/file';

@@ -4,7 +4,7 @@ import CategoriesRepository from '../../modules/car/infra/typeorm/repositories/C
 import { ISpecificationRepository } from '../../modules/car/repositories/ISpecificationsRepository';
 import SpecificationRepository from '../../modules/car/infra/typeorm/repositories/SpecificationRepository';
 import { IUserRepository } from '../../modules/accounts/repositories/IUserRepository';
-import UserRepository from '../../modules/accounts/repositories/implementantions/UserRepository';
+import UserRepository from '../../modules/accounts/infra/typeorm/repositories/UserRepository';
 
 container.registerSingleton<ICategoryRepository>(
 	'CategoryRepository',
