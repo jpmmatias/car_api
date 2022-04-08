@@ -87,7 +87,7 @@ class Car {
 	}
 
 	private withoutAvailable(available: boolean | undefined) {
-		return !available;
+		return available === undefined;
 	}
 
 	private withoutCreatedAt() {
