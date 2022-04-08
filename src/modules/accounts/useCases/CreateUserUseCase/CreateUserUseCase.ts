@@ -1,7 +1,8 @@
 import { inject, injectable } from 'tsyringe';
 import { hash } from 'bcrypt';
-import { IUserRepository } from '../../repositories/IUserRepository';
-import { AppError } from '../../../../errors/AppError';
+import { IUserRepository } from '@modules/accounts/repositories/IUserRepository';
+import { AppError } from '@shared/errors/AppError';
+import ICreateUserDTO from '@modules/accounts/dtos/ICreateUserDTO';
 
 @injectable()
 class CreateUserUseCase {
@@ -10,12 +11,12 @@ class CreateUserUseCase {
 		private userRepository: IUserRepository
 	) {}
 
-	async execute(
-		name: string,
-		email: string,
-		password: string,
-		driver_liscence: string
-	): Promise<void> {
+	async execute({
+		name,
+		email,
+		password,
+		driver_liscence,
+	}: ICreateUserDTO): Promise<void> {
 		if (await this.userAlreadyExist(email)) {
 			throw new AppError('User already exist!');
 		}

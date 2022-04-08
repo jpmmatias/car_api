@@ -1,12 +1,12 @@
 import 'reflect-metadata';
-import createConnection from './database';
+import createConnection from './database/typeorm';
 import express from 'express';
 import 'express-async-errors';
 import swagger from 'swagger-ui-express';
-import swaggerFile from './swagger.json';
-import './shared/container';
+import swaggerFile from '../../../swagger.json';
+import '../../container';
 import { router } from './routes';
-import { errorTreatment } from './middlewares/errorTreatment';
+import { errorTreatment } from '@shared/infra/express/middlewares/errorTreatment';
 
 const app = express();
 

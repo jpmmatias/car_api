@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import { ICategoryRepository } from '../../repositories/ICategoriesRepository';
-import { AppError } from '../../../../errors/AppError';
+import { AppError } from '../../../../shared/errors/AppError';
 
 @injectable()
 class CreateCategoryUseCase {

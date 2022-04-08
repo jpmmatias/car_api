@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { requestBodyRequired } from '../middlewares/requestBodyRequired';
-import { requestFieldsRequired } from '../middlewares/requestFieldsRequired';
-import AuthenticationController from '../modules/accounts/useCases/AuthenticateUser/AuthenticateUserController';
+import { requestBodyRequired } from '@shared/infra/express/middlewares/requestBodyRequired';
+import { requestFieldsRequired } from '@shared/infra/express/middlewares/requestFieldsRequired';
+import AuthenticationController from '@modules/accounts/useCases/AuthenticateUser/AuthenticateUserController';
 
 const authenticationRoutes = Router();
 

@@ -1,6 +1,6 @@
-import SpecificationRepository from '../../repositories/implementantions/SpecificationRepository';
+import SpecificationRepository from '@modules/car/infra/typeorm/repositories/SpecificationRepository';
 import { injectable, inject } from 'tsyringe';
-import { AppError } from '../../../../errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 @injectable()
 export class CreateSpecificationUseCase {
 	constructor(

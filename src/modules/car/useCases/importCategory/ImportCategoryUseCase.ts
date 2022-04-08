@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { parse as csvParse } from 'csv-parse';
-import CategoriesRepository from '../../repositories/implementantions/CategoriesRepository';
+import CategoriesRepository from '@modules/car/infra/typeorm/repositories/CategoriesRepository';
 import { inject, injectable } from 'tsyringe';
 
 interface IImportCategory {

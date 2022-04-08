@@ -1,5 +1,5 @@
 import { ISpecificationRepository } from '../repositories/ISpecificationsRepository';
-import { AppError } from '../../../errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 
 class CreateCategoryService {
 	constructor(

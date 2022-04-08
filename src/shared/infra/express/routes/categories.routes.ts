@@ -1,13 +1,13 @@
 import { Router } from 'express';
 import multer from 'multer';
-import { ensureAuhtenticated } from '../middlewares/ensureAuthenticated';
-import { requestBodyRequired } from '../middlewares/requestBodyRequired';
-import { requestFieldsRequired } from '../middlewares/requestFieldsRequired';
+import { ensureAuhtenticated } from '@shared/infra/express/middlewares/ensureAuthenticated';
+import { requestBodyRequired } from '@shared/infra/express/middlewares/requestBodyRequired';
+import { requestFieldsRequired } from '@shared/infra/express/middlewares/requestFieldsRequired';
 import {
 	CreateCategoryController,
 	ImportCategoryController,
 	ListCategoryController,
-} from '../modules/car/useCases';
+} from '../../../../modules/car/useCases';
 
 const createCategoryController = new CreateCategoryController();
 const listCategoryController = new ListCategoryController();

@@ -1,7 +1,6 @@
-import fs from 'fs';
-import UserRepository from '../../repositories/implementantions/UserRepository';
+import UserRepository from '@modules/accounts/repositories/implementantions/UserRepository';
 import { inject, injectable } from 'tsyringe';
-import { AppError } from '../../../../errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 import { deleteFile } from '../../../../utils/file';
 
 interface IRequest {

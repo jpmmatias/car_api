@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import { ensureAuhtenticated } from '../middlewares/ensureAuthenticated';
-import { requestBodyRequired } from '../middlewares/requestBodyRequired';
-import { requestFieldsRequired } from '../middlewares/requestFieldsRequired';
+import { ensureAuhtenticated } from '@shared/infra/express/middlewares/ensureAuthenticated';
+import { requestBodyRequired } from '@shared/infra/express/middlewares/requestBodyRequired';
+import { requestFieldsRequired } from '@shared/infra/express/middlewares/requestFieldsRequired';
 import {
 	ListSpecificationsController,
 	CreateSpecificationController,
-} from '../modules/car/useCases';
+} from '../../../../modules/car/useCases';
 
 const specificationRoutes = Router();
 const createSpecificationController = new CreateSpecificationController();

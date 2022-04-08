@@ -1,6 +1,5 @@
-import Category from '../entities/Category';
+import Category from '@modules/car/infra/typeorm/entities/Category';
 
-// DTO => Data transfer object
 interface ICreateCateogryDTO {
 	name: string;
 	description: string;

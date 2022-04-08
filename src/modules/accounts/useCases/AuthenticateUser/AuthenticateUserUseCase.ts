@@ -1,9 +1,8 @@
 import { inject, injectable } from 'tsyringe';
 import { compare } from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { IUserRepository } from '../../repositories/IUserRepository';
-import User from '../../entities/User';
-import { AppError } from '../../../../errors/AppError';
+import { IUserRepository } from '@modules/accounts/repositories/IUserRepository';
+import { AppError } from '@shared/errors/AppError';
 
 interface IAuthenticationPromiseResult {
 	user: {
@@ -20,10 +19,13 @@ class AuthenticateUserUseCase {
 		private userRepository: IUserRepository
 	) {}
 
-	async execute(
-		email: string,
-		password: string
-	): Promise<IAuthenticationPromiseResult> {
+	async execute({
+		email,
+		password,
+	}: {
+		email: string;
+		password: string;
+	}): Promise<IAuthenticationPromiseResult> {
 		const user = await this.userRepository.findByEmail(email);
 
 		if (!user) {

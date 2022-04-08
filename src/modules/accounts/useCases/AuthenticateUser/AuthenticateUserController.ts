@@ -10,10 +10,10 @@ export default class AuthenticationController {
 			AuthenticateUserUseCase
 		);
 
-		const { token, user } = await authenticationUserUseCase.execute(
+		const { token, user } = await authenticationUserUseCase.execute({
 			email,
-			password
-		);
+			password,
+		});
 		return res.status(200).json({ user, token });
 	}
 }

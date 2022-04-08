@@ -1,4 +1,4 @@
-import CategoriesRepository from '../../repositories/implementantions/CategoriesRepository';
+import CategoriesRepository from '@modules/car/infra/typeorm/repositories/CategoriesRepository';
 import { inject, injectable } from 'tsyringe';
 
 @injectable()

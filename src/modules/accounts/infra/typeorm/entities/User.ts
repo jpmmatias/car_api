@@ -9,7 +9,7 @@ class User {
 	@Column()
 	name: string;
 
-	@Column()
+	@Column({ unique: true })
 	email: string;
 
 	@Column()
@@ -21,8 +21,8 @@ class User {
 	@Column()
 	admin: boolean;
 
-	@Column()
-	avatar: string;
+	@Column({ nullable: true })
+	avatar!: string;
 
 	@CreateDateColumn()
 	created_at?: Date;
@@ -42,8 +42,6 @@ class User {
 		this.email = email;
 		this.admin = false;
 		this.driver_liscence = driver_liscence;
-
-		this.avatar = null;
 
 		if (this.withoutCreatedAt()) {
 			this.created_at = new Date();

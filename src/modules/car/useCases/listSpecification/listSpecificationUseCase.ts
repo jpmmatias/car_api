@@ -1,4 +1,4 @@
-import SpecificaitonRepository from '../../repositories/implementantions/SpecificationRepository';
+import SpecificaitonRepository from '@modules/car/infra/typeorm/repositories/SpecificationRepository';
 import { inject, injectable } from 'tsyringe';
 
 @injectable()

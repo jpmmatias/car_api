@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import { requestBodyRequired } from '../middlewares/requestBodyRequired';
-import { requestFieldsRequired } from '../middlewares/requestFieldsRequired';
-import CreateUserController from '../modules/accounts/useCases/CreateUserUseCase/CreateUserController';
-import UpdateUserAvatarController from '../modules/accounts/useCases/updateUserAvatar/updateUserAvatarController';
+import { requestBodyRequired } from '@shared/infra/express/middlewares/requestBodyRequired';
+import { requestFieldsRequired } from '@shared/infra/express/middlewares/requestFieldsRequired';
+import CreateUserController from '@modules/accounts/useCases/CreateUserUseCase/CreateUserController';
+import UpdateUserAvatarController from '@modules/accounts/useCases/updateUserAvatar/updateUserAvatarController';
 import multer from 'multer';
-import uploadConfig from '../config/upload';
-import { ensureAuhtenticated } from '../middlewares/ensureAuthenticated';
+import uploadConfig from '@config/upload';
+import { ensureAuhtenticated } from '@shared/infra/express/middlewares/ensureAuthenticated';
 
 const usersRoutes = Router();
 
