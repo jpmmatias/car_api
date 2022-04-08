@@ -1,6 +1,13 @@
-import { IDTOCreateCar } from '@modules/car/repositories/ICarsRepository';
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
+import {
+	Column,
+	CreateDateColumn,
+	Entity,
+	JoinColumn,
+	ManyToOne,
+	PrimaryColumn,
+} from 'typeorm';
 import { v4 as uuid } from 'uuid';
+import Category from '../entities/Category';
 
 @Entity('cars')
 class Car {
@@ -28,6 +35,10 @@ class Car {
 	@Column()
 	brand: string;
 
+	@ManyToOne(() => Category)
+	@JoinColumn({ name: 'category_id' })
+	category!: Category;
+
 	@Column({ nullable: true })
 	category_id!: string;
 
@@ -54,8 +65,8 @@ class Car {
 		this.name = name;
 		this.description = description;
 
-		if (this.withoutCategory(category_id)) {
-			this.category_id;
+		if (category_id) {
+			this.category_id = category_id;
 		}
 
 		if (this.withoutAvailable(available)) {
