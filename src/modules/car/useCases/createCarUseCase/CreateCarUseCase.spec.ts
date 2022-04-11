@@ -38,8 +38,6 @@ describe('CreateCarUseCase - Create car', () => {
 
 		const category = await categoryRepo.findByName('Carrão');
 
-		console.log(category);
-
 		await createCarUseCase.execute({
 			brand: 'Honda',
 			daily_rate: 30,

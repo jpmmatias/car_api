@@ -35,9 +35,43 @@ class CarsRepository implements ICarsRepository {
 		await this.repository.save(car);
 	}
 
-	async list(): Promise<Car[]> {
-		const cars = await this.repository.find();
-		return cars;
+	async listAvailbale(
+		brand?: string,
+		name?: string,
+		category_id?: string
+	): Promise<Car[]> {
+		if (brand) {
+			return this.repository.find({
+				where: {
+					available: true,
+					brand,
+				},
+			});
+		}
+
+		if (name) {
+			return this.repository.find({
+				where: {
+					available: true,
+					name,
+				},
+			});
+		}
+
+		if (category_id) {
+			return this.repository.find({
+				where: {
+					available: true,
+					category_id,
+				},
+			});
+		}
+
+		return this.repository.find({
+			where: {
+				available: true,
+			},
+		});
 	}
 
 	async findByName(name: string): Promise<Car | undefined> {

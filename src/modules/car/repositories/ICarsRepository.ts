@@ -14,7 +14,11 @@ interface IDTOCreateCar {
 interface ICarsRepository {
 	findByName(name: string): Promise<Car | undefined>;
 	findByLiscencePlate(liscencePlate: string): Promise<Car | undefined>;
-	list(): Promise<Car[]>;
+	listAvailbale(
+		brand?: string,
+		name?: string,
+		category_id?: string
+	): Promise<Car[]>;
 	create({}: IDTOCreateCar): Promise<void>;
 }
 

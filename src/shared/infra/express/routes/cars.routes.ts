@@ -4,10 +4,12 @@ import { requestFieldsRequired } from '@shared/infra/express/middlewares/request
 import CreateCarController from '@modules/car/useCases/createCarUseCase/CreateCarController';
 import { ensureAuhtenticated } from '@shared/infra/express/middlewares/ensureAuthenticated';
 import { ensureAdmin } from '../middlewares/ensureAdmin';
+import ListCarsController from '../../../../modules/car/useCases/listCars/listCarsController';
 
 const carsRoutes = Router();
 
 const createCarController = new CreateCarController();
+const listCarController = new ListCarsController();
 
 carsRoutes.post(
 	'/',
@@ -24,5 +26,7 @@ carsRoutes.post(
 	]),
 	createCarController.handle
 );
+
+carsRoutes.get('/', listCarController.handle);
 
 export { carsRoutes };
