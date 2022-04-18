@@ -3,6 +3,7 @@ import { getRepository, Repository } from 'typeorm';
 import {
 	ICarsRepository,
 	IDTOCreateCar,
+	IOptionsUpdate,
 } from '@modules/car/repositories/ICarsRepository';
 
 class CarsRepository implements ICarsRepository {
@@ -79,11 +80,20 @@ class CarsRepository implements ICarsRepository {
 		return car;
 	}
 
+	async findById(id: string): Promise<Car | undefined> {
+		const car = await this.repository.findOne({ id });
+		return car;
+	}
+
 	async findByLiscencePlate(liscencePlate: string): Promise<Car | undefined> {
 		const car = await this.repository.findOne({
 			liscence_plate: liscencePlate,
 		});
 		return car;
+	}
+
+	async update(id: string, { ...options }: IOptionsUpdate) {
+		await this.repository.update(id, { ...options });
 	}
 }
 

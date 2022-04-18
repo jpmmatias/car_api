@@ -1,11 +1,20 @@
 import Car from '@modules/car/infra/typeorm/entities/Car';
-import { ICarsRepository, IDTOCreateCar } from '../ICarsRepository';
+import {
+	ICarsRepository,
+	IDTOCreateCar,
+	IOptionsUpdate,
+} from '../ICarsRepository';
 
 export class CarRepositoryInMemory implements ICarsRepository {
 	cars: Car[] = [];
 
 	async findByName(name: string): Promise<Car | undefined> {
 		const car = this.cars.find((car) => car.name === name);
+		return car;
+	}
+
+	async findById(id: string): Promise<Car | undefined> {
+		const car = this.cars.find((car) => car.id === id);
 		return car;
 	}
 
@@ -29,6 +38,11 @@ export class CarRepositoryInMemory implements ICarsRepository {
 			);
 		}
 		return cars;
+	}
+
+	async update(id: string, { ...options }: IOptionsUpdate) {
+		const car = this.cars.find((car) => car.id === id);
+		Object.assign(car, options);
 	}
 
 	async create({
